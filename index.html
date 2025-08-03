@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Timetable [25w31a]</title>
+    <link rel="stylesheet" href="assets/styles/main.css">
+</head>
+
+<body>
+    <div id="timetable-wrapper">
+        <table>
+            <tr class="t-head">
+                <td class="t-number" rowspan="2" colspan="2">№ Т-ТА</td>
+                <td class="t-stop" rowspan="2">КОНЕЧНЫЙ ПУНКТ</td>
+                <td class="t-time" colspan="2">ПРИБЫТИЕ</td>
+            </tr>
+            <tr class="t-head">
+                <td class="t-time-sub">БЛИЖ.</td><td class="t-time-sub">СЛЕД.</td>
+            </tr>
+            <!-- 1 -->
+            <tr class="t-timetable">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- 2 -->
+            <tr class="t-timetable">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- 3 -->
+            <tr class="t-timetable">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- 4 -->
+            <tr class="t-timetable">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- 5 -->
+            <tr class="t-timetable">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- 6 -->
+            <tr class="t-timetable">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- 7 -->
+            <tr class="t-timetable">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- 8 -->
+            <tr class="t-timetable">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="interraction">
+        <form>
+            <fieldset>
+                <legend>Добавить транспорт</legend>
+                Номер транспорта: <input type="text" id="input-number"> <br>
+                Конечная станция: <input type="text" id="input-stop"> <br>
+                Время до прибытия: <input type="text" id="input-time"> <br>
+                <aside>
+                    <div>
+                        <input type="radio" name="t-type" id="input-trolley" value="T">
+                        <label for="input-trolley">Троллейбус</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="t-type" id="input-bus" value="A">
+                        <label for="input-bus">Автобус</label>
+                    </div>
+                </aside>
+                <p>
+                    <button type="button" onclick="prepareInputData()">Отправить!</button>
+                    <button type="button" onclick="runTests()">Запустить тесты</button>
+                    <button type="reset">Сбросить</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+    <script src="assets/script/tests.js"></script>
+    <script src="assets/script/script.js"></script>
+
+</body>
+
+</html>
