@@ -170,7 +170,7 @@ function updateTimetableHTML() {
 }
 
 function runTests() {
-    timetable = generateRandomTimetable(timetable)
+    timetable = generateRandomTimetable(timetable.language)
     sortTimetable()
     updateTimetableHTML()
 }
