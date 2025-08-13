@@ -22,20 +22,20 @@ function prepareInputData() {
         timetable.types.push(inputType)
         timetable.numbers.push(+inputNumber.value)
         timetable.lastStops.push(inputStop.value)
-        timetable.nearest.push(inputTime.value)
+        timetable.nearest.push(+inputTime.value * 60)
         timetable.next.push('-')
     } else {
-        if (inputTime.value == timetable.nearest[timetableIndex]) {
+        if (+inputTime.value * 60 == timetable.nearest[timetableIndex]) {
             console.log('Nothing to change!');           
-        } else if (inputTime.value == '<1' && timetable.nearest[timetableIndex] != '<1') {
+        } else if (+inputTime.value * 60 < 60 && timetable.nearest[timetableIndex] > 60) {
             timetable.next[timetableIndex] = timetable.nearest[timetableIndex]
-            timetable.nearest[timetableIndex] = inputTime.value
+            timetable.nearest[timetableIndex] = +inputTime.value * 60
         } else {
-            if (+inputTime.value < timetable.nearest[timetableIndex]) {
+            if (+inputTime.value * 60 < timetable.nearest[timetableIndex]) {
                timetable.next[timetableIndex] = timetable.nearest[timetableIndex]
-               timetable.nearest[timetableIndex] = inputTime.value 
+               timetable.nearest[timetableIndex] = +inputTime.value * 60 
             } else {
-                timetable.next[timetableIndex] = inputTime.value
+                timetable.next[timetableIndex] = +inputTime.value * 60
             }
         }
     }
@@ -138,8 +138,33 @@ function updateTimetableHTML() {
         allTimetablesRows[i].children.item(0).textContent = timetable.types[i]
         allTimetablesRows[i].children.item(1).textContent = timetable.numbers[i]
         allTimetablesRows[i].children.item(2).textContent = timetable.lastStops[i]
-        allTimetablesRows[i].children.item(3).textContent = timetable.nearest[i]
-        allTimetablesRows[i].children.item(4).textContent = timetable.next[i]
+        if (timetable.nearest[i] === undefined) {
+            allTimetablesRows[i].children.item(3).textContent = '-/-'
+        } else if (timetable.nearest[i] < 60 && timetable.nearest[i] >= 0) {
+            allTimetablesRows[i].children.item(3).textContent = '<1'
+        } else if (timetable.nearest[i] < 0 && timetable.nearest[i] >= -10) {
+            allTimetablesRows[i].children.item(3).textContent = '--'
+            fadeText(i)
+            setTimeout(() => {
+                fadeText(i)
+            }, 500)
+        } else if (timetable.nearest[i] < -10) {
+            timetable.nearest[i] = timetable.next[i];
+            timetable.next[i] *= 2
+            sortTimetable()
+            
+        } else {
+            allTimetablesRows[i].children.item(3).textContent = Math.floor(timetable.nearest[i] / 60)
+        }
+        if (timetable.next[i] === undefined) {
+            allTimetablesRows[i].children.item(4).textContent = '-/-'
+        } else if (timetable.next[i] < 60 && timetable.next[i] >= 0) {
+            allTimetablesRows[i].children.item(4).textContent = '<1'
+        } else if (timetable.next[i] < 0) {
+            allTimetablesRows[i].children.item(4).textContent = '--'
+        } else {
+            allTimetablesRows[i].children.item(4).textContent = Math.floor(timetable.next[i] / 60)
+        }
     }
 }
 
@@ -147,4 +172,31 @@ function runTests() {
     timetable = generateRandomTimetable()
     sortTimetable()
     updateTimetableHTML()
+}
+
+// TIMER CODE
+let timerID;
+
+function runTime() {
+    timerID = setInterval(timerTick, 1000)
+}
+
+function clearTimer() {
+    clearInterval(timerID)
+}
+
+function timerTick() {
+    let str = ''
+    for (let i = 0; i < timetable.nearest.length; i++) {
+        timetable.nearest[i] -= 1
+        timetable.next[i] -= 1
+        str += `${timetable.nearest[i]} | `
+    }
+    console.log(str);
+    updateTimetableHTML()
+}
+
+function fadeText(index) {
+    const allTimetablesRows = document.querySelectorAll('.t-timetable')
+    allTimetablesRows[index].classList.toggle('fade')
 }

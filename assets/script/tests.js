@@ -18,21 +18,12 @@ function generateRandomTimetable() {
         // NUMBER OF TRANSPORT
         timetable.numbers.push(i*3+5)
         // LAST STOPS
-        timetable.lastStops.push('TEST')
+        timetable.lastStops.push(getRandomStopName())
         // NEAREST TIME
-        const randomNearest = getRandomInt(20)
-        if (randomNearest) {
-            timetable.nearest.push(randomNearest)
-        } else {
-            timetable.nearest.push('<1')
-        }
+        const randomNearest = (getRandomInt(20) + 1) * 60
+        timetable.nearest.push(randomNearest)
         // NEXT TIME
-        const randomNext = getRandomInt(20)
-        if ((typeof timetable.nearest[i]) == 'number') {
-            timetable.next.push(+timetable.nearest[i] + randomNext)
-        } else {
-            timetable.next.push(randomNext)
-        }
+        timetable.next.push(timetable.nearest[timetable.nearest.length - 1] + getRandomInt(20) + timetable.nearest[timetable.nearest.length - 1])
     }
 
     return timetable
@@ -40,4 +31,16 @@ function generateRandomTimetable() {
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
+}
+
+function getRandomStopName() {
+    const stopsArray = [
+        'ДС "Веснянка"', 'ДС "Дружная"', 'Брилевичи',
+        'Зеленый Луг-6','ДС "Кунцевщина"','ДС "Восточная"',
+        'ДС "Славинского"','ДС "Ангарская-4','ДС "Сухарево-5"',
+        'ДС "Карастояновой"','ДС "Шабаны"','ДС "Уручье-2',
+        'Копище','Люцинская','Степянка',
+        'Каменная Горка-5','Ландера','ДС "Юго-Западная"'
+    ]
+    return stopsArray[getRandomInt(18)]
 }

@@ -17,6 +17,7 @@ body {
     color: yellow;
 }
 
+
 #interraction {
     width: 50%;
     height: 100vh;
@@ -45,7 +46,7 @@ table {
 .t-head {
     text-align: center;
 
-    font-size: 16pt;
+    font-size: 15pt;
 }
 
 .t-time, .t-time-sub {
@@ -59,4 +60,8 @@ table {
 
 .t-timetable td:nth-child(5), .t-timetable td:nth-child(1) {
     text-align: center;
+}
+
+.fade {
+    color: black;
 }
