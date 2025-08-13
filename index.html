@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Timetable [Beta 1.1]</title>
+    <title>Bus Timetable [Release]</title>
+    <link rel="shortcut icon" href="assets/icons/bus-icon-bg.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/styles/main.css">
 </head>
 
@@ -107,17 +108,19 @@
                     </div>
                 </aside>
                 <p>
-                    <button type="button" id="language-form-send" onclick="prepareInputData()"">Отправить!</button>
-                    <button type="reset" id="language-form-reset">Сбросить</button> <br> <br>
+                    <button type="button" id="language-form-send" onclick="prepareInputData()"">Отправить</button>
+                    <button type="reset" id="language-form-reset">Сбросить форму</button> <br> <br>
                     <button type="button" id="language-form-runtime" onclick="runTime()">Запустить время</button>
                     <button type="button" id="language-form-stoptime" onclick="clearTimer()">Остановить время</button>
                     <br><br>
                     <button type="button" id="language-form-runtest" onclick="runTests()">Запустить тесты</button>
+                    <button type="button" id="language-form-t-reset" onclick="clearTimetableHTML()">Сбросить расписание</button>
 
                 </p>
             </fieldset>
         </form>
     </div>
+    <script src="assets/script/errors.js"></script>
     <script src="assets/script/tests.js"></script>
     <script src="assets/script/script.js"></script>
     <script src="assets/script/language.js"></script>

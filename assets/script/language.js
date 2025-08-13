@@ -1,17 +1,14 @@
 // LANGUAGE SET
+const languageWrapper = document.querySelector('#language-button-wrapper')
+
+languageWrapper.addEventListener('click', (e) => {
+    if (e.target.tagName == 'SPAN' && !e.target.classList.contains('active-language')) {
+        changeLang()
+    }
+})
+
 const ruLanguage = document.querySelector('#ru')
 const enLanguage = document.querySelector('#en')
-
-ruLanguage.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('active-language')) {
-        changeLang()
-    }
-})
-enLanguage.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('active-language')) {
-        changeLang()
-    }
-})
 
 function changeLang() {
     if (ruLanguage.classList.contains('active-language')) {
@@ -45,6 +42,7 @@ function translateTo(language) {
     const languageFormRuntime = document.querySelector('#language-form-runtime')
     const languageFormStoptime = document.querySelector('#language-form-stoptime')
     const languageFormRuntest = document.querySelector('#language-form-runtest')
+    const languageFormTReset = document.querySelector('#language-form-t-reset')
 
     if (language === 'EN') {
         languageNumber.textContent = '# T-RT'
@@ -58,29 +56,31 @@ function translateTo(language) {
         languageFormTime.textContent = 'Time untill coming:'
         languageFormTrolley.textContent = 'Trolley'
         languageFormBus.textContent = 'Bus'
-        languageFormSend.textContent = 'Send!'
-        languageFormReset.textContent = 'Reset'
+        languageFormSend.textContent = 'Send'
+        languageFormReset.textContent = 'Reset form'
         languageFormRuntime.textContent = 'Start time'
         languageFormStoptime.textContent = 'Stop time'
         languageFormRuntest.textContent = 'Run tests'
+        languageFormTReset.textContent = 'Reset timetable'
 
 
     } else {
         languageNumber.textContent = '№ Т-ТА'
         languageStop.innerHTML = '&nbsp;КОНЕЧНЫЙ ПУНКТ&nbsp;' 
-         languageTime.textContent = 'ПРИБЫТИЕ'
-         languageNear.textContent = 'БЛИЖ.'
-         languageNext.textContent = 'СЛЕД.'
-         languageFormLegend.textContent = 'Добавить транспорт'
-         languageFormNumber.textContent = 'Номер транспорта:'
-         languageFormStop.textContent = 'Конечная станция:'
-         languageFormTime.textContent = 'Время до прибытия'
-         languageFormTrolley.textContent = 'Троллейбус'
-         languageFormBus.textContent = 'Автобус'
-         languageFormSend.textContent = 'Отправить!'
-         languageFormReset.textContent = 'Сбросить'
-         languageFormRuntime.textContent = 'Запустить время'
-         languageFormStoptime.textContent = 'Остановить время'
-         languageFormRuntest.textContent = 'Запустить тесты'     
+        languageTime.textContent = 'ПРИБЫТИЕ'
+        languageNear.textContent = 'БЛИЖ.'
+        languageNext.textContent = 'СЛЕД.'
+        languageFormLegend.textContent = 'Добавить транспорт'
+        languageFormNumber.textContent = 'Номер транспорта:'
+        languageFormStop.textContent = 'Конечная станция:'
+        languageFormTime.textContent = 'Время до прибытия'
+        languageFormTrolley.textContent = 'Троллейбус'
+        languageFormBus.textContent = 'Автобус'
+        languageFormSend.textContent = 'Отправить'
+        languageFormReset.textContent = 'Сбросить форму'
+        languageFormRuntime.textContent = 'Запустить время'
+        languageFormStoptime.textContent = 'Остановить время'
+        languageFormRuntest.textContent = 'Запустить тесты'
+        languageFormTReset.textContent = 'Сбросить расписание'     
     }
 }

@@ -13,17 +13,22 @@ function prepareInputData() {
     const inputTime = document.querySelector('#input-time')
     let inputType = document.getElementsByName('t-type')
 
+    let typeFlag = false;
     for (let i = 0; i < inputType.length; i++) {
         if (inputType[i].checked) {
             inputType = inputType[i].value
+            typeFlag = true
         }
+    }
+    if (!typeFlag) {
+        inputType = 'N/A'
     }
     const timetableIndex = alreadyInTimetable(inputNumber.value)
     if (timetableIndex == -1) {
         timetable.types.push(inputType)
-        timetable.numbers.push(+inputNumber.value)
-        timetable.lastStops.push(inputStop.value)
-        timetable.nearest.push(+inputTime.value * 60)
+        timetable.numbers.push(saveInput(inputNumber))
+        timetable.lastStops.push(prepareString(inputStop.value))
+        timetable.nearest.push(saveInput(inputTime) * 60)
         timetable.next.push('-')
     } else {
         if (+inputTime.value * 60 == timetable.nearest[timetableIndex]) {
@@ -43,6 +48,14 @@ function prepareInputData() {
 
     sortTimetable()
     updateTimetableHTML()
+}
+
+function saveInput(input) {
+    if (Number.isInteger(+input.value) && +input.value > 0 || input.value != '') {
+        return +input.value
+    } else {
+        input.value = 'Error!'
+    }
 }
 
 function timetableSwitchPoses(oldIndex, newIndex) {
@@ -151,7 +164,7 @@ function updateTimetableHTML() {
             }, 500)
         } else if (timetable.nearest[i] < -10) {
             timetable.nearest[i] = timetable.next[i];
-            timetable.next[i] *= 2
+            timetable.next[i] = (timetable.next[i] * 2) + 10
             sortTimetable()
             
         } else {
@@ -166,6 +179,18 @@ function updateTimetableHTML() {
         } else {
             allTimetablesRows[i].children.item(4).textContent = Math.floor(timetable.next[i] / 60)
         }
+    }
+}
+
+function clearTimetableHTML() {
+    const allTimetablesRows = document.querySelectorAll('.t-timetable')
+
+    for (let i = 0; i < allTimetablesRows.length; i++) {
+        allTimetablesRows[i].children.item(0).textContent = ''
+        allTimetablesRows[i].children.item(1).textContent = ''
+        allTimetablesRows[i].children.item(2).textContent = ''
+        allTimetablesRows[i].children.item(3).textContent = ''
+        allTimetablesRows[i].children.item(4).textContent = ''
     }
 }
 
@@ -200,4 +225,8 @@ function timerTick() {
 function fadeText(index) {
     const allTimetablesRows = document.querySelectorAll('.t-timetable')
     allTimetablesRows[index].classList.toggle('fade')
+}
+
+function prepareString(string) {
+    return string.length <= 23 ? string : `${string.slice(0,20)}...`
 }
