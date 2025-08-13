@@ -1,11 +1,4 @@
-function generateRandomTimetable() {
-    const timetable = {
-        types: [],
-        numbers: [],
-        lastStops: [],
-        nearest: [],
-        next: []
-    }
+function generateRandomTimetable(timetable) {
 
     for (let i = 0; i < 10; i++) {
         // TYPE OF TRANSPORT

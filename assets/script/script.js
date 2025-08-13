@@ -3,7 +3,8 @@ let timetable = {
     numbers: [],
     lastStops: [],
     nearest: [],
-    next: []
+    next: [],
+    language: 'RU'
 }
 
 function prepareInputData() {
@@ -169,7 +170,7 @@ function updateTimetableHTML() {
 }
 
 function runTests() {
-    timetable = generateRandomTimetable()
+    timetable = generateRandomTimetable(timetable)
     sortTimetable()
     updateTimetableHTML()
 }

@@ -4,20 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Timetable [25w31a]</title>
+    <title>Bus Timetable [Beta 1.1]</title>
     <link rel="stylesheet" href="assets/styles/main.css">
 </head>
 
 <body>
+    <div id="language-button-wrapper">
+        <span class="language-button active-language" id="ru">RU</span>/
+        <span class="language-button" id="en">EN</span>
+    </div>
     <div id="timetable-wrapper">
         <table>
             <tr class="t-head">
-                <td class="t-number" rowspan="2" colspan="2">№ Т-ТА</td>
-                <td class="t-stop" rowspan="2">КОНЕЧНЫЙ ПУНКТ</td>
-                <td class="t-time" colspan="2">ПРИБЫТИЕ</td>
+                <td class="t-number" rowspan="2" colspan="2" id="language-number">№ Т-ТА</td>
+                <td class="t-stop" rowspan="2" id="language-stop">&nbsp;КОНЕЧНЫЙ ПУНКТ&nbsp;</td>
+                <td class="t-time" colspan="2" id="language-time">ПРИБЫТИЕ</td>
             </tr>
             <tr class="t-head">
-                <td class="t-time-sub">БЛИЖ.</td><td class="t-time-sub">СЛЕД.</td>
+                <td class="t-time-sub" id="language-near">БЛИЖ.</td><td class="t-time-sub" id="language-next">СЛЕД.</td>
             </tr>
             <!-- 1 -->
             <tr class="t-timetable">
@@ -88,27 +92,27 @@
     <div id="interraction">
         <form>
             <fieldset>
-                <legend>Добавить транспорт</legend>
-                Номер транспорта: <input type="text" id="input-number"> <br>
-                Конечная станция: <input type="text" id="input-stop"> <br>
-                Время до прибытия: <input type="text" id="input-time"> <br>
+                <legend id="language-form-legend">Добавить транспорт</legend>
+                <span id="language-form-number">Номер транспорта:</span> <input type="text" id="input-number"> <br>
+                <span id="language-form-stop">Конечная станция:</span> <input type="text" id="input-stop"> <br>
+                <span id="language-form-time">Время до прибытия:</span> <input type="text" id="input-time"> <br>
                 <aside>
                     <div>
                         <input type="radio" name="t-type" id="input-trolley" value="T">
-                        <label for="input-trolley">Троллейбус</label>
+                        <label for="input-trolley" id="language-form-trolley">Троллейбус</label>
                     </div>
                     <div>
                         <input type="radio" name="t-type" id="input-bus" value="A">
-                        <label for="input-bus">Автобус</label>
+                        <label for="input-bus" id="language-form-bus">Автобус</label>
                     </div>
                 </aside>
                 <p>
-                    <button type="button" onclick="prepareInputData()">Отправить!</button>
-                    <button type="reset">Сбросить</button> <br> <br>
-                    <button type="button" onclick="runTime()">Запустить время</button>
-                    <button type="button" onclick="clearTimer()">Остановить время</button>
+                    <button type="button" id="language-form-send" onclick="prepareInputData()"">Отправить!</button>
+                    <button type="reset" id="language-form-reset">Сбросить</button> <br> <br>
+                    <button type="button" id="language-form-runtime" onclick="runTime()">Запустить время</button>
+                    <button type="button" id="language-form-stoptime" onclick="clearTimer()">Остановить время</button>
                     <br><br>
-                    <button type="button" onclick="runTests()">Запустить тесты</button>
+                    <button type="button" id="language-form-runtest" onclick="runTests()">Запустить тесты</button>
 
                 </p>
             </fieldset>
@@ -116,7 +120,7 @@
     </div>
     <script src="assets/script/tests.js"></script>
     <script src="assets/script/script.js"></script>
-
+    <script src="assets/script/language.js"></script>
 </body>
 
 </html>
